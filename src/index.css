@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    background-color: #0b1020;
+    color: #ffffff;
+    font-family: 'Plus Jakarta Sans', 'Sora', system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Accessible visible focus rings */
+  :focus-visible {
+    outline: 2px solid #2ee6a6;
+    outline-offset: 3px;
+    border-radius: 9999px;
+  }
+}
+
+/* Soft radial fintech glows */
+.glow-violet {
+  background: radial-gradient(circle, rgba(109, 74, 255, 0.34) 0%, rgba(109, 74, 255, 0) 70%);
+}
+
+.glow-mint {
+  background: radial-gradient(circle, rgba(46, 230, 166, 0.24) 0%, rgba(46, 230, 166, 0) 70%);
+}
+
+.glow-coral {
+  background: radial-gradient(circle, rgba(255, 107, 138, 0.24) 0%, rgba(255, 107, 138, 0) 70%);
+}
+
+/* Glassmorphism surface */
+.glass-card {
+  background: rgba(19, 27, 51, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Light-mode fintech card option (#F5F7FB with #111111 text) */
+.fintech-light-card {
+  background: #f5f7fb;
+  color: #111111;
+  border: 1px solid rgba(17, 17, 17, 0.08);
+}
+
+/* Cinema credits vertical fade mask */
+.credits-mask {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 14%,
+    black 84%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 14%,
+    black 84%,
+    transparent 100%
+  );
+}
+
+/* Red velvet theatre curtain pleat texture */
+.velvet-curtain {
+  background-image: repeating-linear-gradient(
+    90deg,
+    #4c0615 0px,
+    #7f0c24 18px,
+    #a81433 34px,
+    #69091d 52px,
+    #3d0410 68px
+  );
+  box-shadow: inset 0 0 60px rgba(0, 0, 0, 0.65);
+}
+
+/* Animated equalizer bars for music pill */
+@keyframes eqBounce {
+  0%,
+  100% {
+    transform: scaleY(0.28);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.eq-bar-1 {
+  animation: eqBounce 0.75s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.eq-bar-2 {
+  animation: eqBounce 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.15s infinite;
+}
+.eq-bar-3 {
+  animation: eqBounce 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.3s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eq-bar-1,
+  .eq-bar-2,
+  .eq-bar-3 {
+    animation: none;
+    transform: scaleY(0.6);
+  }
+}

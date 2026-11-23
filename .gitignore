@@ -1,0 +1,16 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables (keep secrets out of Git)
+.env
+.env.local
+.env.*.local
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
