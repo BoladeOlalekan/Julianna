@@ -5,10 +5,9 @@ import { CONFIG } from '../config/config';
 
 /**
  * Screen 6: Reply Sheet
- * - Rounded light-mode fintech card slides up
+ * - Crisp ProFinance card (#F4F5F7) with jet-black submit button
  * - Name pre-filled from CONFIG.FRIEND_DISPLAY_NAME
  * - Sends reply to your Formspree endpoint with name, message, and timestamp
- * - Validation, loading state, and graceful error state with retry
  */
 export function ReplyScreen({ onSubmitted }) {
   const [name, setName] = useState(CONFIG.FRIEND_DISPLAY_NAME);
@@ -88,13 +87,13 @@ export function ReplyScreen({ onSubmitted }) {
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
-        className="mx-auto w-full max-w-lg rounded-[32px] fintech-light-card p-6 sm:p-9 shadow-fintech-light"
+        className="mx-auto w-full max-w-lg rounded-[32px] pf-surface-card p-6 sm:p-9 shadow-pf-card"
       >
-        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-coral/15 px-3.5 py-1 text-xs font-bold text-rose-600">
+        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#E2FF3B] px-3.5 py-1 text-xs font-extrabold text-[#0E0F12]">
           <span>💌 {CONFIG.DIALOGUE.replyBadge}</span>
         </div>
 
-        <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#111111]">
+        <h2 className="font-display text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0E0F12]">
           {CONFIG.DIALOGUE.replyQuestion}
         </h2>
 
@@ -103,7 +102,7 @@ export function ReplyScreen({ onSubmitted }) {
           <div>
             <label
               htmlFor="reply-name"
-              className="block text-xs font-bold uppercase tracking-wider text-[#111111]/60 mb-1.5"
+              className="block text-xs font-bold uppercase tracking-wider text-[#0E0F12]/60 mb-1.5"
             >
               {CONFIG.DIALOGUE.replyNameLabel}
             </label>
@@ -114,7 +113,7 @@ export function ReplyScreen({ onSubmitted }) {
               value={name}
               onChange={(e) => setName(e.target.value)}
               disabled={status === 'sending'}
-              className="w-full rounded-2xl border-2 border-[#111111]/10 bg-white px-4 py-3 text-base font-semibold text-[#111111] focus:border-violet-electric focus:outline-none transition-colors"
+              className="w-full rounded-2xl border-2 border-[#0E0F12]/10 bg-white px-4 py-3 text-base font-semibold text-[#0E0F12] focus:border-[#0E0F12] focus:outline-none transition-colors"
             />
           </div>
 
@@ -122,7 +121,7 @@ export function ReplyScreen({ onSubmitted }) {
           <div>
             <label
               htmlFor="reply-message"
-              className="block text-xs font-bold uppercase tracking-wider text-[#111111]/60 mb-1.5"
+              className="block text-xs font-bold uppercase tracking-wider text-[#0E0F12]/60 mb-1.5"
             >
               {CONFIG.DIALOGUE.replyMessageLabel}
             </label>
@@ -140,7 +139,7 @@ export function ReplyScreen({ onSubmitted }) {
               }}
               disabled={status === 'sending'}
               placeholder={CONFIG.DIALOGUE.replyPlaceholder}
-              className="w-full resize-none rounded-2xl border-2 border-[#111111]/10 bg-white px-4 py-3.5 text-base font-medium text-[#111111] placeholder:text-[#111111]/40 focus:border-violet-electric focus:outline-none transition-colors"
+              className="w-full resize-none rounded-2xl border-2 border-[#0E0F12]/10 bg-white px-4 py-3.5 text-base font-medium text-[#0E0F12] placeholder:text-[#0E0F12]/40 focus:border-[#0E0F12] focus:outline-none transition-colors"
             />
           </div>
 
@@ -163,21 +162,21 @@ export function ReplyScreen({ onSubmitted }) {
             disabled={status === 'sending'}
             whileHover={status !== 'sending' ? { y: -2, scale: 1.01 } : {}}
             whileTap={status !== 'sending' ? { scale: 0.98 } : {}}
-            className="w-full inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-violet-electric via-[#7D5BFF] to-coral px-7 py-4 font-display text-base font-bold text-white shadow-glow-violet disabled:opacity-70"
+            className="w-full inline-flex items-center justify-center gap-2.5 rounded-2xl bg-[#0E0F12] px-7 py-4 font-display text-base font-bold text-white shadow-pf-float hover:bg-[#1F2129] transition-colors disabled:opacity-70"
           >
             {status === 'sending' ? (
               <>
-                <Loader2 className="h-5 w-5 animate-spin" />
+                <Loader2 className="h-5 w-5 animate-spin text-[#E2FF3B]" />
                 <span>{CONFIG.DIALOGUE.replySendingLabel}</span>
               </>
             ) : status === 'error' ? (
               <>
-                <RefreshCw className="h-5 w-5" />
+                <RefreshCw className="h-5 w-5 text-[#E2FF3B]" />
                 <span>Try Sending Again</span>
               </>
             ) : (
               <>
-                <Send className="h-4 w-4" />
+                <Send className="h-4 w-4 text-[#E2FF3B]" />
                 <span>{CONFIG.DIALOGUE.replySubmitLabel}</span>
               </>
             )}

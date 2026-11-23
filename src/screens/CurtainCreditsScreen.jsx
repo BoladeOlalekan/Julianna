@@ -168,7 +168,7 @@ export function CurtainCreditsScreen({ onStageReady, onFinished }) {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 70% 55% at 50% 18%, rgba(109, 74, 255, 0.22), rgba(255, 200, 61, 0.06) 45%, rgba(6, 8, 18, 0.96) 80%)',
+            'radial-gradient(ellipse 70% 55% at 50% 18%, rgba(226, 255, 59, 0.14), rgba(255, 107, 107, 0.05) 45%, rgba(14, 15, 18, 0.98) 80%)',
         }}
         aria-hidden="true"
       />

@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 
-const COLORS = ['#6D4AFF', '#2EE6A6', '#FFC83D', '#FF6B8A', '#FFFFFF'];
+const COLORS = ['#E2FF3B', '#0E0F12', '#FF6B6B', '#2EE6A6', '#CBEB1E'];
 
 /**
  * Lightweight GPU-accelerated confetti & fintech arrow burst.

@@ -7,10 +7,7 @@ import { useTypewriter } from '../hooks/useTypewriter';
 
 /**
  * Screen 4: The two anime characters + "Ready?" & "Confirm" dialogue tree.
- * - Typewriter speech bubbles (ducks background music slightly while typing)
- * - Escalating funny Nigerian-flavoured "No" path (#1, #2, #3, #4+ dodging/shrinking)
- * - "Yes" triggers confirmation ("You sure sure...?") with "Wait, let me think" loop
- * - "Yes, I'm sure" triggers celebration ("Get in jhor! 🔥") -> Curtain sequence
+ * Styled in the crisp white + electric-lime + jet-black ProFinance palette.
  */
 export function ReadyConfirmScreen({
   step, // 'ready' | 'confirm'
@@ -29,7 +26,6 @@ export function ReadyConfirmScreen({
 
   const { displayedText, isTyping } = useTypewriter(speechText, 24);
 
-  // Duck background music gently while characters are talking
   useEffect(() => {
     onSpeakingChange?.(isTyping);
     return () => onSpeakingChange?.(false);
@@ -39,7 +35,6 @@ export function ReadyConfirmScreen({
     if (isCelebrating) return;
 
     const lines = CONFIG.DIALOGUE.noLines;
-    // After 4 clicks, clicking "Okay fine 😅" smoothly moves her to the Yes/confirm path!
     if (noCount >= 4) {
       handleYesClick();
       return;
@@ -53,7 +48,6 @@ export function ReadyConfirmScreen({
     else if (noCount === 2) setMood('laughing');
     else setMood('begging');
 
-    // On 3rd+ click, nudge the No button playfully
     if (noCount >= 2) {
       const offsets = [
         { x: 26, y: -10 },
@@ -111,32 +105,32 @@ export function ReadyConfirmScreen({
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className="mx-auto w-full max-w-lg flex flex-col items-center"
       >
-        {/* Speech Bubble */}
+        {/* Crisp Speech Bubble with electric-lime accent shadow */}
         <motion.div
           layout
-          className="relative w-full rounded-[28px] fintech-light-card px-6 py-5 sm:px-7 sm:py-6 shadow-fintech-light text-center"
+          className="relative w-full rounded-[28px] bg-white border-2 border-[#0E0F12] px-6 py-5 sm:px-7 sm:py-6 shadow-[0_8px_0_#E2FF3B] text-center"
         >
           <p
-            className="font-display text-lg sm:text-xl font-bold text-[#111111] leading-snug min-h-[3.5rem] flex items-center justify-center"
+            className="font-display text-lg sm:text-xl font-bold text-[#0E0F12] leading-snug min-h-[3.5rem] flex items-center justify-center"
             aria-live="polite"
           >
             <span>
               {displayedText}
               {isTyping && (
-                <span className="ml-0.5 inline-block h-5 w-0.5 bg-violet-electric align-middle animate-pulse" />
+                <span className="ml-0.5 inline-block h-5 w-0.5 bg-[#0E0F12] align-middle animate-pulse" />
               )}
             </span>
           </p>
 
-          {/* Speech bubble tail pointing toward characters */}
+          {/* Speech bubble tail */}
           <div
-            className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 h-5 w-5 rotate-45 bg-[#F5F7FB] border-r border-b border-[#111111]/10"
+            className="absolute -bottom-3 left-1/2 -translate-x-1/2 h-5 w-5 rotate-45 bg-white border-r-2 border-b-2 border-[#0E0F12]"
             aria-hidden="true"
           />
         </motion.div>
 
         {/* Animated Boy & Girl Chibi/Anime Characters */}
-        <div className="mt-6">
+        <div className="mt-7">
           <AnimeCharacters mood={mood} />
         </div>
 
@@ -146,7 +140,7 @@ export function ReadyConfirmScreen({
             <motion.div
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="inline-flex items-center gap-2 rounded-full bg-sunny/20 border border-sunny/40 px-6 py-3 font-display text-base font-extrabold text-sunny"
+              className="inline-flex items-center gap-2 rounded-full bg-[#E2FF3B] border-2 border-[#0E0F12] px-6 py-3 font-display text-base font-extrabold text-[#0E0F12]"
             >
               Opening the curtains... 🎭
             </motion.div>
@@ -155,12 +149,12 @@ export function ReadyConfirmScreen({
               <motion.button
                 type="button"
                 onClick={handleYesClick}
-                whileHover={{ y: -2, scale: 1.04 }}
+                whileHover={{ y: -2, scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
                 animate={{
                   scale: noCount >= 3 ? 1.07 : 1,
                 }}
-                className="w-full sm:w-auto min-w-[160px] rounded-full bg-gradient-to-r from-mint to-[#19C98E] px-8 py-3.5 font-display text-base font-extrabold text-[#0B1020] shadow-glow-mint"
+                className="w-full sm:w-auto min-w-[165px] rounded-2xl bg-[#0E0F12] px-8 py-4 font-display text-base font-bold text-white shadow-pf-float hover:bg-[#1F2129] transition-colors"
               >
                 {CONFIG.DIALOGUE.yesButtonLabel}
               </motion.button>
@@ -180,7 +174,7 @@ export function ReadyConfirmScreen({
                 }
                 whileTap={{ scale: noButtonScale * 0.95 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full sm:w-auto min-w-[130px] rounded-full border border-white/20 bg-white/10 px-7 py-3.5 font-display text-base font-bold text-white/90 hover:bg-white/15"
+                className="w-full sm:w-auto min-w-[130px] rounded-2xl border-2 border-[#0E0F12]/15 bg-[#F4F5F7] px-7 py-4 font-display text-base font-bold text-[#0E0F12] hover:border-[#0E0F12]/40 transition-colors"
               >
                 {noButtonLabel}
               </motion.button>
@@ -190,9 +184,9 @@ export function ReadyConfirmScreen({
               <motion.button
                 type="button"
                 onClick={handleConfirmYes}
-                whileHover={{ y: -2, scale: 1.04 }}
+                whileHover={{ y: -2, scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full sm:w-auto min-w-[180px] rounded-full bg-gradient-to-r from-violet-electric via-[#7D5BFF] to-coral px-8 py-3.5 font-display text-base font-extrabold text-white shadow-glow-violet"
+                className="w-full sm:w-auto min-w-[180px] rounded-2xl bg-[#E2FF3B] border-2 border-[#0E0F12] px-8 py-4 font-display text-base font-extrabold text-[#0E0F12] shadow-pf-lime"
               >
                 {CONFIG.DIALOGUE.confirmYesLabel}
               </motion.button>
@@ -202,7 +196,7 @@ export function ReadyConfirmScreen({
                 onClick={handleWaitClick}
                 whileHover={{ y: -1, scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full sm:w-auto min-w-[170px] rounded-full border border-white/20 bg-white/10 px-6 py-3.5 font-display text-base font-bold text-white/90 hover:bg-white/15"
+                className="w-full sm:w-auto min-w-[170px] rounded-2xl border-2 border-[#0E0F12]/15 bg-[#F4F5F7] px-6 py-4 font-display text-base font-bold text-[#0E0F12] hover:border-[#0E0F12]/40 transition-colors"
               >
                 {CONFIG.DIALOGUE.confirmWaitLabel}
               </motion.button>

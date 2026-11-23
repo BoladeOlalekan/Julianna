@@ -6,11 +6,10 @@ import { EnvelopeSVG } from '../components/EnvelopeSVG';
 
 /**
  * Screen 2: Identity Check
- * - Envelope flap lifts open
- * - Rounded light-mode fintech card (#F5F7FB) slides up
+ * - Envelope flap lifts open above a crisp ProFinance light-gray card (#F4F5F7)
  * - Validates against CONFIG.CORRECT_NAMES (case-insensitive, trimmed)
  * - Wrong answer: playful shake + rotating Nigerian-flavoured line
- * - Correct answer: emerald green glow & unlocks Welcome screen
+ * - Correct answer: electric-lime glow & unlocks Welcome screen
  */
 export function VerifyScreen({ onVerified }) {
   const [inputValue, setInputValue] = useState('');
@@ -68,7 +67,7 @@ export function VerifyScreen({ onVerified }) {
           <EnvelopeSVG isOpen={flapOpen} className="w-48 sm:w-56" />
         </motion.div>
 
-        {/* Sheet-over-scene rounded fintech card (light-mode panel #F5F7FB) */}
+        {/* Crisp ProFinance rounded card */}
         <motion.div
           key={shakeKey}
           initial={shakeKey === 0 ? { y: 46, opacity: 0 } : { x: 0 }}
@@ -84,11 +83,11 @@ export function VerifyScreen({ onVerified }) {
           }
           className={`w-full rounded-[28px] p-6 sm:p-8 transition-all duration-500 ${
             isUnlocked
-              ? 'bg-[#ECFEF6] text-[#0B1020] ring-4 ring-mint shadow-glow-mint'
-              : 'fintech-light-card shadow-fintech-light'
+              ? 'bg-[#E2FF3B] text-[#0E0F12] shadow-pf-lime ring-2 ring-[#0E0F12]'
+              : 'pf-surface-card shadow-pf-card'
           }`}
         >
-          <h2 className="font-display text-xl sm:text-2xl font-extrabold tracking-tight text-[#111111] leading-snug">
+          <h2 className="font-display text-xl sm:text-2xl font-extrabold tracking-tight text-[#0E0F12] leading-snug">
             {CONFIG.DIALOGUE.verifyQuestion}
           </h2>
 
@@ -106,7 +105,7 @@ export function VerifyScreen({ onVerified }) {
                 onChange={(e) => setInputValue(e.target.value)}
                 disabled={isUnlocked}
                 placeholder={CONFIG.DIALOGUE.verifyPlaceholder}
-                className="w-full rounded-2xl border-2 border-[#111111]/10 bg-white px-4 py-3.5 text-base font-semibold text-[#111111] placeholder:text-[#111111]/40 focus:border-violet-electric focus:outline-none transition-colors"
+                className="w-full rounded-2xl border-2 border-[#0E0F12]/12 bg-white px-4 py-3.5 text-base font-semibold text-[#0E0F12] placeholder:text-[#0E0F12]/40 focus:border-[#0E0F12] focus:outline-none transition-colors"
               />
             </div>
 
@@ -116,7 +115,7 @@ export function VerifyScreen({ onVerified }) {
                 <motion.p
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-sm font-bold text-emerald-700"
+                  className="text-sm font-extrabold text-[#0E0F12]"
                 >
                   {CONFIG.DIALOGUE.verifySuccessLine}
                 </motion.p>
@@ -124,7 +123,7 @@ export function VerifyScreen({ onVerified }) {
                 <motion.p
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="text-sm font-semibold text-rose-600"
+                  className="text-sm font-semibold text-[#E64848]"
                 >
                   {errorMsg}
                 </motion.p>
@@ -136,19 +135,15 @@ export function VerifyScreen({ onVerified }) {
               disabled={isUnlocked}
               whileHover={!isUnlocked ? { y: -2, scale: 1.01 } : {}}
               whileTap={!isUnlocked ? { scale: 0.98 } : {}}
-              className={`w-full inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 font-display text-base font-bold text-white transition-all ${
-                isUnlocked
-                  ? 'bg-emerald-500 shadow-glow-mint'
-                  : 'bg-violet-electric hover:bg-[#5B38F5] shadow-glow-violet'
-              }`}
+              className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-[#0E0F12] px-6 py-4 font-display text-base font-bold text-white shadow-pf-float hover:bg-[#1F2129] transition-colors"
             >
               <span>
                 {isUnlocked ? 'Unlocked!' : CONFIG.DIALOGUE.verifySubmitLabel}
               </span>
               {isUnlocked ? (
-                <CheckCircle2 className="h-5 w-5" />
+                <CheckCircle2 className="h-5 w-5 text-[#E2FF3B]" />
               ) : (
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-5 w-5 text-[#E2FF3B]" />
               )}
             </motion.button>
           </form>

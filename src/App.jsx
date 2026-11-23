@@ -63,15 +63,19 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="relative min-h-screen w-full overflow-x-hidden bg-[#0B1020] text-white">
-        {/* Persistent Fintech Background Decor (softened during cinema stage) */}
+      <div
+        className={`relative min-h-screen w-full overflow-x-hidden transition-colors duration-500 ${
+          isCinemaScreen ? 'bg-[#0E0F12] text-white' : 'bg-white text-[#0E0F12]'
+        }`}
+      >
+        {/* Persistent Fintech Background Decor (hidden during cinema stage) */}
         {!isCinemaScreen && (
           <FintechDecor intensity={screen === 'landing' ? 'full' : 'minimal'} />
         )}
 
         {/* Slim Floating Top Bar + Music Equaliser Pill */}
         <TopBar
-          currentState={screen}
+          isDark={isCinemaScreen}
           isPlaying={isPlaying}
           isMuted={isMuted}
           onToggleMute={toggleMute}

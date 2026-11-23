@@ -4,15 +4,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        navy: '#0B1020',
-        'navy-light': '#131B33',
-        panel: '#F5F7FB',
-        violet: {
-          electric: '#6D4AFF',
-        },
+        ink: '#0E0F12',
+        surface: '#F4F5F7',
+        'lime-pop': '#E2FF3B',
+        'lime-deep': '#CBEB1E',
+        'coral-pop': '#FF6B6B',
         mint: '#2EE6A6',
-        sunny: '#FFC83D',
-        coral: '#FF6B8A',
+        sunny: '#E2FF3B',
+        coral: '#FF6B6B',
       },
       fontFamily: {
         sans: ['"Plus Jakarta Sans"', '"Sora"', 'system-ui', 'sans-serif'],
@@ -24,10 +23,9 @@ export default {
         '4xl': '2rem',
       },
       boxShadow: {
-        'fintech': '0 24px 60px -15px rgba(11, 16, 32, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08)',
-        'fintech-light': '0 24px 60px -15px rgba(11, 16, 32, 0.25), 0 0 0 1px rgba(17, 17, 17, 0.06)',
-        'glow-violet': '0 12px 35px -6px rgba(109, 74, 255, 0.55)',
-        'glow-mint': '0 12px 35px -6px rgba(46, 230, 166, 0.45)',
+        'pf-card': '0 18px 50px -20px rgba(14, 15, 18, 0.14), 0 0 0 1px rgba(14, 15, 18, 0.06)',
+        'pf-float': '0 22px 48px -18px rgba(14, 15, 18, 0.22)',
+        'pf-lime': '0 20px 44px -18px rgba(190, 224, 18, 0.55)',
       },
     },
   },
